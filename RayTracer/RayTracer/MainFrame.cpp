@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MainFrame.h"
+#include "Vector3D.h"
 
 MainFrame::MainFrame(wxWindow* parent, int id, wxString title, wxPoint pos,
     wxSize size, int style)
@@ -15,7 +16,7 @@ MainFrame::MainFrame(wxWindow* parent, int id, wxString title, wxPoint pos,
     m_renderSurface->Bind(wxEVT_PAINT, &MainFrame::OnPaint, this);
 
     wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
-    bSizer->Add(m_renderSurface, 0);
+    bSizer->Add(m_renderSurface, 1, wxEXPAND, 2);
     this->SetSizer(bSizer);
     Layout();
 
@@ -23,6 +24,8 @@ MainFrame::MainFrame(wxWindow* parent, int id, wxString title, wxPoint pos,
     m_timer.Start(17);
     this->Bind(wxEVT_TIMER, &MainFrame::OnTimer, this);
     m_curRGB = 0;
+
+    int stop = 1;
 }
 
 MainFrame::~MainFrame()
